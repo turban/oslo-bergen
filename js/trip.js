@@ -72,7 +72,7 @@ var stops = [{
 	latlng: [60.309, 5.323]
 }];
 
-var map = L.map('map').setView([60.5, 8], 8);
+var map = L.map('map').fitBounds([[59.92,5.19],[60.72,10.73]]);
 
 L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
 	attribution: '&copy; <a href="http://osm.org/copyright">Kartverket</a>'
