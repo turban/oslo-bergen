@@ -3,6 +3,7 @@
 date_default_timezone_set('Europe/Oslo');
 
 require_once 'cartodb.class.php';
+require_once 'cartodb.config.php';
 
 $feedId = "123abc";
 $feedUrl = "https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/$feedId/message.json";
@@ -26,16 +27,7 @@ if ($response['count'] == 1) {
   $messages = $response['messages']['message'];
 }
 
-// CartoDB
-$config = array(
-  "key"       => "123abc",
-  "secret"    => "123abc",
-  "email"     => "your@email",
-  "password"  => "password",
-  "subdomain" => "account"
-);
-
-$cartodb = new CartoDBClient($config);
+$cartodb = new CartoDBClient($cartodb_config);
 
 if (!$cartodb->authorized) {
   error_log("uauth");
