@@ -54,8 +54,11 @@
 			title: 'Tent'
 		},
 		onClick: function (evt) {
-			var t = new Date(evt.message.timestamp * 1000);
-			evt.layer.bindPopup(t.getHours() + ':' + ('0' + t.getMinutes()).slice(-2)).openPopup();
+			var message = evt.message,
+			    t = new Date(message.timestamp * 1000);
+
+			//console.log(message);
+			evt.layer.bindPopup('<strong>' + message.placename + '</strong><br>' + message.terrain + ' ' + message.altitude + ' moh.<br/>Kl.' + t.getHours() + ':' + ('0' + t.getMinutes()).slice(-2)).openPopup();
 		}			
 	}).addTo(map);
 
