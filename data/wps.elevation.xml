@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wps:ExecuteResponse xmlns:wps="http://www.opengis.net/wps/1.0.0" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsGetCapabilities_response.xsd" service="WPS" version="1.0.0" xml:lang="eng" serviceInstance="http://www.geonorge.no/wps-elevation/wps?service=WPS&amp;request=GetCapabilities&amp;version=1.0.0" statusLocation="http://www.geonorge.no/wps-result2/pywps-140205735758.xml">
+    <wps:Process wps:processVersion="0.1">
+        <ows:Identifier>elevation</ows:Identifier>
+        <ows:Title>elevation</ows:Title>
+        <ows:Abstract>
+     The elevation process returns the elevation and place name of a given point in a given coordinate system.
+     The elevation is calculated by interpolation in a 1m network of isometric lines in populated areas (with FKB coverage), and
+     in a 20m network in other areas.
+     </ows:Abstract>
+    </wps:Process>
+    <wps:Status creationTime="Fri Jun  6 14:22:39 2014">
+        <wps:ProcessSucceeded>PyWPS Process elevation successfully calculated</wps:ProcessSucceeded>
+    </wps:Status>
+    <wps:ProcessOutputs>
+        <wps:Output>
+            <ows:Identifier>placename</ows:Identifier>
+            <ows:Title>placename</ows:Title>
+            <wps:Data>
+                <wps:LiteralData dataType="string">Nordre Breivik</wps:LiteralData>
+            </wps:Data>
+        </wps:Output>
+        <wps:Output>
+            <ows:Identifier>terrain</ows:Identifier>
+            <ows:Title>terrain</ows:Title>
+            <wps:Data>
+                <wps:LiteralData dataType="string">Åpent område</wps:LiteralData>
+            </wps:Data>
+        </wps:Output>
+        <wps:Output>
+            <ows:Identifier>elevation</ows:Identifier>
+            <ows:Title>elevation</ows:Title>
+            <wps:Data>
+                <wps:LiteralData dataType="float" uom="m.a.s.l.">3.58974477954</wps:LiteralData>
+            </wps:Data>
+        </wps:Output>
+        <wps:Output>
+            <ows:Identifier>ssrid</ows:Identifier>
+            <ows:Title>SSRID</ows:Title>
+            <wps:Data>
+                <wps:LiteralData dataType="integer">1196378</wps:LiteralData>
+            </wps:Data>
+        </wps:Output>
+    </wps:ProcessOutputs>
+</wps:ExecuteResponse>
