@@ -4,7 +4,7 @@ mb_internal_encoding("UTF-8");
 mb_http_output("UTF-8");
 
 require_once 'cartodb.class.php';
-require_once 'cartodb.config.php';
+require_once 'config.php';
 
 $cartodb = new CartoDBClient($cartodb_config);
 

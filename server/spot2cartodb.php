@@ -3,9 +3,8 @@
 date_default_timezone_set('Europe/Oslo');
 
 require_once 'cartodb.class.php';
-require_once 'cartodb.config.php';
+require_once 'config.php';
 
-$feedId = "123abc";
 $feedUrl = "https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/$feedId/message.json";
 
 $jsonString = file_get_contents($feedUrl);

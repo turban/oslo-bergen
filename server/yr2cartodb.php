@@ -2,6 +2,8 @@
 
 date_default_timezone_set('Europe/Oslo');
 
+require_once 'config.php';
+
 // http://api.yr.no/weatherapi/locationforecast/1.9/?lat=59.33896;lon=5.96669
 // http://api.yr.no/weatherapi/locationforecast/1.9/documentation
 // http://nrkbeta.no/2014/06/03/bedre-nedborsvarsling-pa-yr/
@@ -29,7 +31,7 @@ $cloudiness    = (int)$location ->cloudiness['percent'];
 $fog           = (int)$location ->fog['percent'];
 $forecast      = $xml->xpath("/weatherdata/product/time[@from='$symbolTime'][2]")[0];
 $symbolTime    = array('from' => (string)$forecast['from'], 'to' => (string)$forecast['to']);
-$symbol        = $forecast->location->symbol['number']; 
+$symbol        = (int)$forecast->location->symbol['number']; 
 $precipitation = $forecast->location->precipitation['value']; 
 
 
@@ -50,12 +52,11 @@ echo '<p>Precipitation: ' . $precipitation;
 echo "<p>Hour: $hour</p>";
 
 
-
-
 if ($symbol < 9 && $symbol !== 4) $symbol .= ($hour >= 6 and $hour <= 21) ? 'd' : 'n';
 if (strlen($symbol) < 9) $symbol = "0$symbol";
 
 echo "<p>Symbol: $symbol</p>";
+print_r($symbolTime);
 
 echo '<img src="http://fil.nrk.no/yr/grafikk/sym/b38/' . $symbol . '.png" width="38" height="38" alt="Klårvêr">';
 
