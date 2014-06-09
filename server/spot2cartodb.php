@@ -1,9 +1,9 @@
 <?php
 
-date_default_timezone_set('Europe/Oslo');
-
 require_once 'cartodb.class.php';
 require_once 'config.php';
+
+date_default_timezone_set($timezone);
 
 $feedUrl = "https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/$feedId/message.json";
 
@@ -63,5 +63,8 @@ foreach ($messages as $message) {
   }
 
 }
+
+require 'kartverket2cartodb.php';
+require 'yr2cartodb.php';
 
 ?>

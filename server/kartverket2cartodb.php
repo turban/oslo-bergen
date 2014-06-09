@@ -22,7 +22,7 @@ foreach ($response['return']['rows'] as $row) {
 	$longitude  = $row->longitude;
 	$url        = "http://openwps.statkart.no/skwms1/wps.elevation?request=Execute&service=WPS&version=1.0.0&identifier=elevation&datainputs=%5blat=$latitude;lon=$longitude;epsg=4326%5d";
 	$xml        = simplexml_load_file($url);
-	$output     = $xml->xpath('//wps:ExecuteResponse/wps:ProcessOutputs')[0];
+	$output     = $xml->xpath('//wps:ExecuteResponse/wps:ProcessOutputs')[0]; 
 	$altitude   = (string)$output->xpath('wps:Output[ows:Identifier/text()="elevation"]/wps:Data/wps:LiteralData')[0];
 
 	if ($altitude !== 'nan') {

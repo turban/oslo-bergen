@@ -47,20 +47,50 @@
 		liveUrl: "{api}?q=SELECT * FROM spot WHERE feed_id='{feed}' AND timestamp > {timestamp} ORDER BY timestamp",
 		OK: {
 			icon: L.MakiMarkers.icon({ icon: 'building',  color: '#145291', size: 'm' }),
-			title: 'House'
+			title: 'Hytte'
 		},
 		CUSTOM: {
 			icon: L.MakiMarkers.icon({ icon: 'campsite', color: '#145291', size: 'm' }),
-			title: 'Tent'
+			title: 'Telt'
 		},
 		onClick: function (evt) {
-			var message = evt.message,
-			    t = new Date(message.timestamp * 1000);
-
-			//console.log(message);
-			evt.layer.bindPopup('<strong>' + message.placename + '</strong><br>' + message.terrain + ' ' + message.altitude + ' moh.<br/>Kl.' + t.getHours() + ':' + ('0' + t.getMinutes()).slice(-2)).openPopup();
+			var message = evt.message;
+			evt.layer.bindPopup(getPlace(message) + getTime(message.timestamp) + getWeather(message)).openPopup();
 		}			
 	}).addTo(map);
+
+	function getPlace (message) {
+		if (message.placename) {
+			return L.Util.template('<p><strong>{placename}</strong><br>{terrain} {altitude} moh.</p>', message);
+		}
+		return '';
+	}
+
+	function getTime (timestamp) {
+		var t = new Date(timestamp * 1000);
+		return L.Util.template('<p>{date}. {month} {year} kl. {hours}:{minutes}</p>', {
+			date: t.getDate(),
+			month: ['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'][t.getMonth()],
+			year: t.getFullYear(),
+			hours: t.getHours(),
+			minutes: ('0' + t.getMinutes()).slice(-2)
+		});
+	}
+
+	/*
+	'nord','nord-nord&oslash;st','nord&oslash;st','&oslash;st-nord&oslash;st',
+	    '&oslash;st','&oslash;st-s&oslash;r&oslash;st','s&oslash;r&oslash;st','s&oslash;r-s&oslash;r&oslash;st',
+	    's&oslash;r','s&oslash;r-s&oslash;rvest', 's&oslash;rvest','vest-s&oslash;rvest',
+	    'vest', 'vest-nordvest','nordvest', 'nord-nordvest', 'nord')
+	*/
+	function getWeather (message) {
+		if (message.weather_symbol) {
+			return L.Util.template('<p><img src="http://fil.nrk.no/yr/grafikk/sym/b38/{weather_symbol}.png" width="38" height="38" style="float:left;margin:-5px 5px 10px -5px;">{temperature}°C - {precipitation} mm<br>{wind},<br>{wind_speed} m/s fra {direction}</p>', L.extend(message, {
+					direction: { 'N': 'nord', 'E': 'øst', 'S': 'sør', 'W': 'vest' }[message.wind_direction]
+				}));
+		}
+		return '';
+	}
 
 	</script>
 </body>
