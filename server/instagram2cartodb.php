@@ -29,24 +29,24 @@ foreach ($images as $image) {
   if ($image['created_time'] > $max && isset($image['location'])) { 
 
     $location       = $image['location'];
-  	$latitude       = $location['latitude'];
-  	$longitude      = $location['longitude'];	
-  	$place_name     = isset($location['name']) ? $location['name'] : '';
-  	$caption        = isset($image['caption']['text']) ? $image['caption']['text'] : '';
-  	$image_thumb    = $image['images']['thumbnail']['url'];
-  	$image_low      = $image['images']['low_resolution']['url'];
-  	$image_standard = $image['images']['standard_resolution']['url'];
+    $latitude       = $location['latitude'];
+    $longitude      = $location['longitude']; 
+    $place_name     = isset($location['name']) ? $location['name'] : '';
+    $caption        = isset($image['caption']['text']) ? $image['caption']['text'] : '';
+    $image_thumb    = $image['images']['thumbnail']['url'];
+    $image_low      = $image['images']['low_resolution']['url'];
+    $image_standard = $image['images']['standard_resolution']['url'];
 
-  	if (isset($image['videos'])) {
+    if (isset($image['videos'])) {
       $video_low      = $image['videos']['low_resolution']['url'];
       $video_standard = $image['videos']['standard_resolution']['url'];
-  	}
+    }
 
     $data = array(
       'instagram_id'   => "'" . $image['id'] . "'",
       'the_geom'       => "'SRID=4326;POINT(" . $longitude . " " . $latitude . ")'",
       'type'           => "'" . $image['type'] . "'",
-      'link'           => "'" . $image['link'] . "'",  	  
+      'link'           => "'" . $image['link'] . "'",     
       'latitude'       => $latitude, 
       'longitude'      => $longitude,
       'place_id'       => isset($location['id']) ? $location['id'] : 0, // null not working 
