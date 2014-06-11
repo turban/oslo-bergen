@@ -77,16 +77,19 @@
 		});
 	}
 
-	/*
-	'nord','nord-nord&oslash;st','nord&oslash;st','&oslash;st-nord&oslash;st',
-	    '&oslash;st','&oslash;st-s&oslash;r&oslash;st','s&oslash;r&oslash;st','s&oslash;r-s&oslash;r&oslash;st',
-	    's&oslash;r','s&oslash;r-s&oslash;rvest', 's&oslash;rvest','vest-s&oslash;rvest',
-	    'vest', 'vest-nordvest','nordvest', 'nord-nordvest', 'nord')
-	*/
 	function getWeather (message) {
 		if (message.weather_symbol) {
-			return L.Util.template('<p><img src="http://fil.nrk.no/yr/grafikk/sym/b38/{weather_symbol}.png" width="38" height="38" style="float:left;margin:-5px 5px 10px -5px;">{temperature}°C - {precipitation} mm<br>{wind},<br>{wind_speed} m/s fra {direction}</p>', L.extend(message, {
-					direction: { 'N': 'nord', 'E': 'øst', 'S': 'sør', 'W': 'vest' }[message.wind_direction]
+			return L.Util.template('<p><img src="http://fil.nrk.no/yr/grafikk/sym/b38/{weather_symbol}.png" width="38" height="38" style="float:left;margin:-5px 5px 10px -5px;">{temperature}°C - {precipitation} mm<br>{wind},<br>{wind_speed} m/s fra {direction}</p><p>Weather data from <a href="http://api.yr.no">MET Norway</a></p>', L.extend(message, {
+					direction: { 
+						'N':  'nord', 
+						'NE': 'nordøst', 
+						'E':  'øst', 
+						'SE': 'sørøst',
+						'S':  'sør', 
+						'SW': 'sørvest',
+						'W':  'vest',
+						'NW': 'nordvest' 
+					}[message.wind_direction]
 				}));
 		}
 		return '';
