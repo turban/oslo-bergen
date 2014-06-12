@@ -5,7 +5,7 @@ require_once 'config.php';
 
 date_default_timezone_set($timezone);
 
-$instagram_url = $instagram['api'] . $instagram['endpoint'] . '?access_token=' . $instagram['token'];
+$url = $instagram['api'] . $instagram['endpoint'] . '?access_token=' . $instagram['token'];
 
 // Load images
 $jsonString = file_get_contents($url);
