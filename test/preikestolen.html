@@ -66,7 +66,7 @@
 		}			
 	}).addTo(map);
 
-	L.instagram('http://turban.cartodb.com/api/v2/sql?q=SELECT * FROM instagram WHERE the_geom %26%26 ST_SetSRID(ST_MakeBox2D(ST_Point(6.13, 58.98), ST_Point(6.20, 59.00)), 4326)').addTo(map); 
+	L.instagram('http://turban.cartodb.com/api/v2/sql?q=SELECT * FROM instagram WHERE the_geom %26%26 ST_SetSRID(ST_MakeBox2D(ST_Point(6.00, 58.95), ST_Point(6.30, 59.05)), 4326)').addTo(map); 
 
 	function getPlace (message) {
 		if (message.placename) {
