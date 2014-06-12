@@ -79,7 +79,8 @@
 
 	function getWeather (message) {
 		if (message.weather_symbol) {
-			return L.Util.template('<p><img src="http://fil.nrk.no/yr/grafikk/sym/b38/{weather_symbol}.png" width="38" height="38" style="float:left;margin:-5px 5px 10px -5px;">{temperature}°C - {precipitation} mm<br>{wind},<br>{wind_speed} m/s fra {direction}</p><p>Weather data from <a href="http://api.yr.no">MET Norway</a></p>', L.extend(message, {
+			console.log(message.weather_symbol);
+			return L.Util.template('<p><img src="http://api.yr.no/weatherapi/weathericon/1.1/?symbol={weather_symbol};content_type=image/png" width="38" height="38" style="float:left;margin:-5px 5px 10px -5px;">{temperature}°C - {precipitation} mm<br>{wind},<br>{wind_speed} m/s fra {direction}</p><p>Værdata fra <a href="http://api.yr.no">api.yr.no</a></p>', L.extend(message, {
 					direction: { 
 						'N':  'nord', 
 						'NE': 'nordøst', 

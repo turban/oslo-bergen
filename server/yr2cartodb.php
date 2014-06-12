@@ -37,16 +37,16 @@ foreach ($response['return']['rows'] as $row) {
 		$symbolTime    = array('from' => (string)$forecast['from'], 'to' => (string)$forecast['to']);
 		$symbol        = (int)$forecast->location->symbol['number']; 
 		$precipitation = $forecast->location->precipitation['value']; 
-		$time          = new DateTIME('now', new DateTimeZone($timezone));
-		$sunrise       = strtotime(date_sunrise($time->getTimestamp(), SUNFUNCS_RET_STRING, $latitude , $longitude, 90, $time->getOffset() / 3600));
-		$sunset        = strtotime(date_sunset($time->getTimestamp(), SUNFUNCS_RET_STRING, $latitude , $longitude, 90, $time->getOffset() / 3600));
+		//$time          = new DateTIME('now', new DateTimeZone($timezone));
+		//$sunrise       = strtotime(date_sunrise($time->getTimestamp(), SUNFUNCS_RET_STRING, $latitude , $longitude, 90, $time->getOffset() / 3600));
+		//$sunset        = strtotime(date_sunset($time->getTimestamp(), SUNFUNCS_RET_STRING, $latitude , $longitude, 90, $time->getOffset() / 3600));
 
 		if (strlen($symbol) < 2) { 
 			$symbol = "0$symbol";
 		}
-		if ($symbol < 9 && $symbol !== 4) {
-			$symbol .= ($timestamp > $sunrise and $timestamp < $sunset) ? 'd' : 'n';
-		}
+		//if ($symbol < 9 && $symbol !== 4) {
+		//	$symbol .= ($timestamp > $sunrise and $timestamp < $sunset) ? 'd' : 'n';
+		//}
 
 		$cartodb->runSql("UPDATE spot SET temperature=$temperature, precipitation=$precipitation, wind='$wind', wind_speed=$windSpeed, wind_direction='$windDirection', weather_symbol='$symbol' WHERE cartodb_id = $cartodb_id");
 	}
