@@ -50,7 +50,6 @@
 	L.spotTracker(feed, {
 		api: 'http://turban.cartodb.com/api/v2/sql',
 		url: "{api}?q=SELECT * FROM spot WHERE feed_id='{feed}' ORDER BY timestamp",
-		liveUrl: "{api}?q=SELECT * FROM spot WHERE feed_id='{feed}' AND timestamp > {timestamp} ORDER BY timestamp",
 		OK: {
 			icon: L.MakiMarkers.icon({ icon: 'building',  color: '#145291', size: 'm' }),
 			title: 'Hytte'
@@ -58,8 +57,8 @@
 		CUSTOM: {
 			icon: L.MakiMarkers.icon({ icon: 'campsite', color: '#145291', size: 'm' }),
 			title: 'Telt'
-		},
-		focus: 16,		
+		},	
+		live: false,
 		onClick: function (evt) {
 			var message = evt.message;
 			evt.layer.bindPopup(getPlace(message) + getTime(message.timestamp) + getWeather(message)).openPopup();
