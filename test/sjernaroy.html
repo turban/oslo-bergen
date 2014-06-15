@@ -43,7 +43,7 @@
 			icon: L.MakiMarkers.icon({ icon: 'campsite', color: '#145291', size: 'm' }),
 			title: 'Telt'
 		},
-		focus: 16,		
+		live: false,	
 		onClick: function (evt) {
 			var message = evt.message;
 			evt.layer.bindPopup(getPlace(message) + getTime(message.timestamp) + getWeather(message)).openPopup();
