@@ -4,19 +4,16 @@
 	<title>Biking on Sjernarøyane archipelago</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta property="og:image" content="route.png" />
 	<link rel="stylesheet" href="../lib/leaflet/leaflet.css" />
-	<link rel="stylesheet" href="../lib/fancybox/jquery.fancybox.css" media="screen" />
+	<link rel="stylesheet" href="../lib/cluster/MarkerCluster.css" />			
+	<link rel="stylesheet" href="../lib/Leaflet.Instagram.css" />
 	<link rel="stylesheet" href="map.css" />
 </head>
 <body>
 	<div id="map"></div>
-	<div id="instagram"></div>
-	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-	<script src="../lib/fancybox/jquery.fancybox.pack.js"></script>	
 	<script src="../lib/reqwest.min.js"></script>
 	<script src="../lib/leaflet/leaflet.js"></script>
-	<script src="../lib/Leaflet.MakiMarkers.js"></script>
+	<script src="../lib/cluster/leaflet.markercluster.js"></script>		
 	<script src="../lib/Leaflet.SpotTracker.js"></script>	
 	<script src="../lib/Leaflet.Instagram.js"></script>	
 	<script src="../lib/gpx.js"></script>		
@@ -44,14 +41,6 @@
 		api: 'http://turban.cartodb.com/api/v2/sql',
 		url: "{api}?q=SELECT * FROM spot WHERE feed_id='{feed}' ORDER BY timestamp",
 		liveUrl: "{api}?q=SELECT * FROM spot WHERE feed_id='{feed}' AND timestamp > {timestamp} ORDER BY timestamp",
-		OK: {
-			icon: L.MakiMarkers.icon({ icon: 'building',  color: '#145291', size: 'm' }),
-			title: 'Hytte'
-		},
-		CUSTOM: {
-			icon: L.MakiMarkers.icon({ icon: 'campsite', color: '#145291', size: 'm' }),
-			title: 'Telt'
-		},
 		live: false,	
 		onClick: function (evt) {
 			var message = evt.message;
@@ -59,9 +48,7 @@
 		}		
 	}).addTo(map);
 
-	L.instagram('http://turban.cartodb.com/api/v2/sql?q=SELECT * FROM instagram WHERE the_geom %26%26 ST_SetSRID(ST_MakeBox2D(ST_Point(5.727, 59.124), ST_Point(5.924, 59.305)), 4326)', {
-		stripEl: $('#instagram')	
-	}).addTo(map); 
+	L.instagram('http://turban.cartodb.com/api/v2/sql?q=SELECT * FROM instagram WHERE the_geom %26%26 ST_SetSRID(ST_MakeBox2D(ST_Point(5.727, 59.124), ST_Point(5.924, 59.305)), 4326)').addTo(map); 
 
 	function getPlace (message) {
 		if (message.placename) {
