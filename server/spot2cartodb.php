@@ -47,7 +47,7 @@ foreach ($messages as $message) {
       'the_geom'        => "'SRID=4326;POINT(" . $message['longitude'] . " " . $message['latitude'] . ")'",
       'messenger_id'    => "'" . $message['messengerId'] . "'",
       'messenger_name'  => "'" . $message['messengerName'] . "'",
-      'timestamp'        => $message['unixTime'],    
+      'timestamp'       => $message['unixTime'],    
       'message_type'    => "'" . $message['messageType'] . "'",  
       'latitude'        => $message['latitude'],  
       'longitude'       => $message['longitude'],

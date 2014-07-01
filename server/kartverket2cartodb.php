@@ -14,7 +14,7 @@ if (!$cartodb->authorized) {
   exit();
 }
 
-$response = $cartodb->runSql("SELECT cartodb_id, latitude, longitude FROM spot WHERE altitude IS NULL ORDER BY timestamp DESC LIMIT 10"); 
+$response = $cartodb->runSql("SELECT cartodb_id, latitude, longitude FROM spot WHERE altitude IS NULL ORDER BY timestamp DESC LIMIT 100"); 
 
 foreach ($response['return']['rows'] as $row) {
 	$cartodb_id = $row->cartodb_id;
