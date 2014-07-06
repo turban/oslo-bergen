@@ -1,0 +1,35 @@
+
+oslobergen.no
+#oslobergen
+
+Elevation profile
+Crossfilter
+Wikipedia
+Norvegiana
+Leaflet custom build
+Highcharts custom build
+Polymer
+
+
+Layout:
+
+-----------------------------------------------------
+| oslobergen.no                         |           |
+|                                       | About     |
+|                                       | Popout    |
+|                                       | Etapper   |
+|                                       | Twitter   |
+|                   Map                 |           |
+|                                       |           |
+|                                       |           |
+|                                       |           |
+|                                       |           |
+|                                       |           |
+|----------------------------------------------------
+|                                                   |   
+|          Elevation profile / Instagram            |   
+|                                                   |   
+-----------------------------------------------------
+
+
+
