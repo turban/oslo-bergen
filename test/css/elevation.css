@@ -1,0 +1,53 @@
+html, body, #map { 
+	margin: 0; 
+	height: 100%; 
+	background: #fff; 
+}	
+
+#map {
+	height: 70%;
+	border-bottom: 1px solid red;
+}
+
+#elevation {
+	height: 30%;			
+}
+
+.leaflet-marker-live {
+	-webkit-animation: pulse 2s ease-out;
+	animation: pulse 2s ease-out;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulse {
+	from { stroke-width: 15; stroke-opacity: 1; }
+	to { stroke-width: 50; stroke-opacity: 0; }
+}
+@keyframes pulse {
+	from { stroke-width: 15; stroke-opacity: 1; }
+	to { stroke-width: 50; stroke-opacity: 0; }
+}	
+
+.leaflet-label {
+	background: rgb(255, 255, 255);
+	background: rgba(255, 255, 255, 0.81);
+	background-clip: padding-box;
+	border-color: #777;
+	border-color: rgba(0,0,0,0.25);
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 1px;
+	color: #111;
+	display: block;
+	font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding: 1px 6px;
+	position: absolute;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	pointer-events: none;
+	white-space: nowrap;
+	z-index: 6;
+}
