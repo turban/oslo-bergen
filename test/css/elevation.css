@@ -1,4 +1,4 @@
-html, body, #map { 
+html, body, #splitter { 
 	margin: 0; 
 	height: 100%; 
 	background: #fff; 
@@ -6,12 +6,21 @@ html, body, #map {
 
 #map {
 	height: 70%;
-	border-bottom: 1px solid red;
 }
 
 #elevation {
-	height: 30%;			
+	height: 30%;	
+	/*width: auto;*/
+	/*white-space: nowrap;*/
 }
+
+/*
+#elevation img {
+	height: 100%;
+	border: 5px solid #000;
+	cursor: pointer;
+}
+*/
 
 .leaflet-marker-live {
 	-webkit-animation: pulse 2s ease-out;
@@ -51,3 +60,49 @@ html, body, #map {
 	white-space: nowrap;
 	z-index: 6;
 }
+
+
+
+
+.splitter_panel {
+  position: relative;
+}
+.splitter_panel .hsplitter {
+    cursor: row-resize;
+    z-index: 800;
+    height: 7px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;   
+    background: #eee url("up-arrow.png") no-repeat center center;
+}
+.splitter_panel .hsplitter:hover {
+    background-color: #ddd;
+}
+.splitter_panel .vsplitter.splitter-invisible,
+.splitter_panel .hsplitter.splitter-invisible {
+    background: none;
+}
+.splitter_panel .hsplitter, .splitter_panel .top_panel, .splitter_panel .bottom_panel {
+    position: absolute;
+}
+.splitter_panel .hsplitter, .splitter_panel .top_panel, .splitter_panel .bottom_panel {
+  width: 100%;
+}
+.splitter_panel .top_panel {
+   top: 0;
+}
+.splitter_panel .top_panel, .splitter_panel .bottom_panel, .splitter_panel .hsplitter {
+   left: 0;
+}
+.splitter_panel .bottom_panel {
+   bottom: 0;
+}
+.splitterMask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
