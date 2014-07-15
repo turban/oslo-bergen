@@ -6,6 +6,7 @@ html, body, #splitter {
 
 #map {
 	height: 70%;
+	background: #fff;
 }
 
 #elevation {

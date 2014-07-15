@@ -1,16 +1,20 @@
 //$(function () { 
 
-    var bounds = [[59.1, 4.8], [59.5, 6.0]];
+    var bounds = [[59.13, 4.8], [59.46, 6.0]];
 
     // create an orange rectangle
 
     var map = L.map('map', {
-        maxZoom: 14
+        maxZoom: 16
     }).fitBounds(bounds);
 
-    L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
+    var grunnkart = L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
         attribution: '&copy; <a href="http://kartverket.no/">Kartverket</a>'
     }).addTo(map);
+
+    var topo = L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo2&zoom={z}&x={x}&y={y}', {
+        attribution: '&copy; <a href="http://kartverket.no/">Kartverket</a>'
+    });
 
     //L.rectangle(bounds, {color: "#ff7800", weight: 1}).addTo(map);
 
@@ -63,6 +67,15 @@
     });
 
 //});
+
+
+L.control.layers({
+    'Bakgrunnkart': grunnkart,
+    'Topografisk': topo
+}, {
+    'Bilder': instagram
+}).addTo(map);
+
 
 
 $(function () { 
