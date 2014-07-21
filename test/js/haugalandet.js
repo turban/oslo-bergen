@@ -2,8 +2,6 @@
 
     var bounds = [[59.13, 4.8], [59.46, 6.0]];
 
-    // create an orange rectangle
-
     var map = L.map('map', {
         maxZoom: 16
     }).fitBounds(bounds);
@@ -32,11 +30,14 @@
         evt.marker.bindPopup(getPlace(data) + getTime(data.time) + getWeather(data)).openPopup();
     });
 
-    $.getJSON("http://turban.cartodb.com/api/v2/sql?q=SELECT cartodb_id AS id, placename AS name, terrain, latitude AS lat, longitude AS lng, altitude AS alt, placename AS name, message_type AS type, timestamp AS time, weather_symbol AS weather, temperature AS temp, precipitation AS precip, wind, wind_speed, wind_direction AS wind_dir FROM spot WHERE feed_id='" + feed_id + "' AND altitude IS NOT NULL ORDER BY timestamp", function(data) {
+    //$.getJSON("http://turban.cartodb.com/api/v2/sql?q=SELECT cartodb_id AS id, placename AS name, terrain, latitude AS lat, longitude AS lng, altitude AS alt, placename AS name, message_type AS type, timestamp AS time, weather_symbol AS weather, temperature AS temp, precipitation AS precip, wind, wind_speed, wind_direction AS wind_dir FROM spot WHERE feed_id='" + feed_id + "' AND altitude IS NOT NULL ORDER BY timestamp", function(data) {
+    $.getJSON("http://turban.cartodb.com/api/v2/sql?q=SELECT cartodb_id AS id, placename AS name, terrain, latitude AS lat, longitude AS lng, altitude AS alt, placename AS name, message_type AS type, timestamp AS time, weather_symbol AS weather, temperature AS temp, precipitation AS precip, wind, wind_speed, wind_direction AS wind_dir FROM spot WHERE feed_id='" + feed_id + "' ORDER BY timestamp", function(data) {
+
         elevation.addData(data.rows);
         var id = data.rows[data.rows.length - 1].id;
         setInterval(function(){
-            $.getJSON("http://turban.cartodb.com/api/v2/sql?q=SELECT cartodb_id AS id, placename AS name, terrain, latitude AS lat, longitude AS lng, altitude AS alt, placename AS name, message_type AS type, timestamp AS time, weather_symbol AS weather, temperature AS temp, precipitation AS precip, wind, wind_speed, wind_direction AS wind_dir FROM spot WHERE feed_id='" + feed_id + "' AND altitude IS NOT NULL " + (id ? 'AND cartodb_id > ' + id : '') + " ORDER BY timestamp", function(data) {
+            //$.getJSON("http://turban.cartodb.com/api/v2/sql?q=SELECT cartodb_id AS id, placename AS name, terrain, latitude AS lat, longitude AS lng, altitude AS alt, placename AS name, message_type AS type, timestamp AS time, weather_symbol AS weather, temperature AS temp, precipitation AS precip, wind, wind_speed, wind_direction AS wind_dir FROM spot WHERE feed_id='" + feed_id + "' AND altitude IS NOT NULL " + (id ? 'AND cartodb_id > ' + id : '') + " ORDER BY timestamp", function(data) {
+            $.getJSON("http://turban.cartodb.com/api/v2/sql?q=SELECT cartodb_id AS id, placename AS name, terrain, latitude AS lat, longitude AS lng, altitude AS alt, placename AS name, message_type AS type, timestamp AS time, weather_symbol AS weather, temperature AS temp, precipitation AS precip, wind, wind_speed, wind_direction AS wind_dir FROM spot WHERE feed_id='" + feed_id + "' " + (id ? 'AND cartodb_id > ' + id : '') + " ORDER BY timestamp", function(data) {
                 //console.log(data);
                 if (data.rows.length) {
                     id = data.rows[data.rows.length - 1].id;
@@ -53,6 +54,7 @@
 
     //var instaUrl = 'http://turban.cartodb.com/api/v2/sql?q=SELECT * FROM instagram WHERE timestamp > ' + timestamp + ' ORDER BY cartodb_id';
 
+    /*
     $.getJSON('http://turban.cartodb.com/api/v2/sql?q=SELECT * FROM instagram WHERE cartodb_id >= ' + cartodb_id + ' ORDER BY cartodb_id', function(data) {
         instagram._onLoad(data);
         var id = data.rows[0].cartodb_id;
@@ -65,6 +67,7 @@
             });
         }, update * 60000);    
     });
+    */
 
 //});
 
@@ -75,7 +78,6 @@ L.control.layers({
 }, {
     'Bilder': instagram
 }).addTo(map);
-
 
 
 $(function () { 
