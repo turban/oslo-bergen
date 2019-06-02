@@ -1,177 +1,268 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>From Oslo to Bergen by foot - planned route</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta property="og:image" content="route.png" />
-	<link rel="stylesheet" href="../lib/leaflet/leaflet.css" />
-	<style>
-		html, body, #map { margin: 0; height: 100%; background: #fff; }
-	</style>
-</head>
-<body>
-	<div id="map"></div>
-	<script src="../lib/leaflet/leaflet.js"></script>	
-	<script src="../lib/Leaflet.MakiMarkers.js"></script>
-	<script>
+  <head>
+    <title>From Oslo to Bergen by foot - planned route</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image" content="route.png" />
+    <link rel="stylesheet" href="../lib/leaflet/leaflet.css" />
+    <style>
+      html,
+      body,
+      #map {
+        margin: 0;
+        height: 100%;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="../lib/leaflet/leaflet.js"></script>
+    <script src="../lib/Leaflet.MakiMarkers.js"></script>
+    <script>
+      var route = [
+        {
+          name: "Lillogata",
+          description: "Start",
+          latlng: [59.94298, 10.767825],
+          marker: { icon: "circle-stroked", color: "#145291", size: "l" }
+        },
+        {
+          name: "Fyllingen",
+          description: "Telt",
+          latlng: [60.08507, 10.61638],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "Store Røstjern",
+          description: "Telt",
+          latlng: [60.16242, 10.37849],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "Hønefoss",
+          description: "Butikker",
+          latlng: [60.16784, 10.25601],
+          marker: { icon: "grocery", color: "#145291", size: "s" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/101237/ellingseterkoia'>Ellingseterkoia</a>",
+          description: "Ubetjent",
+          latlng: [60.25802, 10.09731],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/10262/tjuenborgkoia'>Tjuenborgkoia</a>",
+          description: "Ubetjent",
+          latlng: [60.339, 9.977],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "<a href='https://ut.no/hytte/10461/buvasskoia'>Buvasskoia</a>",
+          description: "Ubetjent",
+          latlng: [60.407, 9.775],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/101108/storekrakkoia'>Storekrakkoia</a>",
+          description: "Ubetjent",
+          latlng: [60.497, 9.711],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Finnbu",
+          description: "Depot",
+          latlng: [60.47823, 9.56751],
+          marker: { icon: "grocery", color: "#145291", size: "s" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/101307/rde-kors-hytta-pa-veneli'>Røde Kors-hytta på Veneli</a>",
+          description: "Ubetjent",
+          latlng: [60.496, 9.468],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "<a href='https://ut.no/hytte/10509/fnhuskoia'>Fønhuskoia</a>",
+          description: "Ubetjent",
+          latlng: [60.61, 9.432],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Røggjen",
+          description: "Telt",
+          latlng: [60.68841, 9.23281],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "Golsfjellet",
+          description:
+            "<a href='http://www.storefjell.no/'>Storefjell Resort Hotel</a>",
+          latlng: [60.80271, 8.9561],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Robru",
+          description:
+            "<a href='http://www.joker.no/Butikkene/Buskerud/Joker-Robru/'>Butikk</a>",
+          latlng: [60.747, 8.869],
+          marker: { icon: "grocery", color: "#145291", size: "s" }
+        },
+        {
+          name: "Buhovdvatnet",
+          description: "Telt",
+          latlng: [60.74186, 8.68263],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "<a href='http://www.bergsjostolen.no'>Bergsjøstølen</a>",
+          description: "Fjellstove",
+          latlng: [60.716, 8.291],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/10973/iungsdalshytta'>Iungsdalshytta</a>",
+          description: "Betjent",
+          latlng: [60.81, 7.934],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/10811/kongshelleren'>Kongshelleren</a>",
+          description: "Selvbetjent",
+          latlng: [60.777, 7.701],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/10808/geiterygghytta'>Geiterygghytta</a>",
+          description: "Betjent",
+          latlng: [60.701, 7.604],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/10805/hallingskeid'>Hallingskeid</a>",
+          description: "Selvbetjent",
+          latlng: [60.668, 7.248],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/10958/kaldavasshytta'>Kaldavasshytta</a>",
+          description: "Ubetjent",
+          latlng: [60.702, 7.08],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Mjølfjell",
+          description: "<a href='http://www.mjolfjell.no'>Fjellstove</a>",
+          latlng: [60.703, 6.937],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Mjølfjelltunet",
+          description: "<a href='http://www.mjolfjelltunet.no/'>Butikk</a>",
+          latlng: [60.69233, 6.84247],
+          marker: { icon: "grocery", color: "#145291", size: "s" }
+        },
+        {
+          name: "<a href='https://ut.no/hytte/101284/bt-hytten'>BT-hytten</a>",
+          description: "Ubetjent",
+          latlng: [60.66192, 6.86266],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Svortetjørn",
+          description: "Telt",
+          latlng: [60.56319, 6.81328],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "Granvin",
+          description:
+            "<a href='https://joker.no/Finn-butikk/Joker-Granvin'>Butikk</a>",
+          latlng: [60.52884, 6.72643],
+          marker: { icon: "grocery", color: "#145291", size: "s" }
+        },
+        {
+          name: "Bulko",
+          description: "Privat hytte",
+          latlng: [60.55395, 6.61298],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "<a href='https://ut.no/hytte/101320/nansenbu'>Nansenbu</a>",
+          description: "Ubetjent",
+          latlng: [60.5414, 6.3443],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "<a href='https://ut.no/hytte/10753/kiellandbu'>Kiellandbu</a>",
+          description: "Ubetjent",
+          latlng: [60.5146, 6.20128],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "<a href='https://ut.no/hytte/10763/vending'>Vending</a>",
+          description: "Selvbetjent",
+          latlng: [60.474, 6.075],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name:
+            "<a href='https://ut.no/hytte/101146/gullhorgabu'>Gullhorgabu</a>",
+          description: "Selvbetjent",
+          latlng: [60.5007, 5.96018],
+          marker: { icon: "building", color: "#145291", size: "m" }
+        },
+        {
+          name: "Bogaskaret",
+          description: "Telt",
+          latlng: [60.44878, 5.78724],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "Gullfjellet",
+          description: "Telt",
+          latlng: [60.37726, 5.58778],
+          marker: { icon: "campsite", color: "#145291", size: "m" }
+        },
+        {
+          name: "Nordåsgrenda",
+          description: "Mål",
+          latlng: [60.309, 5.323],
+          marker: { icon: "bar", color: "#145291", size: "l" }
+        }
+      ];
 
-	var route = [{
-		"name": "Lillogata",
-		"description": "Start", 
-		"latlng": [59.942980, 10.767825],
-		"marker": { "icon": "circle-stroked", "color": "#145291", "size": "l" }
-	},{
-		"name": "<a href='http://ut.no/hytte/sinnerdammen'>Sinnerdammen</a>",
-		"description": "Ubetjent", 
-		"latlng": [60.169, 10.496],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "Jevnaker",
-		"description": "Butikker", 
-		"latlng": [60.241, 10.372],
-		"marker": { "icon": "grocery", "color": "#145291", "size": "s" }
-	},{
-		"name": "Hvalstjern",
-		"description": "Telt", 
-		"latlng": [60.275, 10.233],
-		"marker": { "icon": "campsite", "color": "#145291", "size": "m" }
-	},{
-		"name": "Hallingby",
-		"description": "Butikk", 
-		"latlng": [60.271,10.185],
-		"marker": { "icon": "grocery", "color": "#145291", "size": "s" }
-	},{
-		"name": "<a href='http://ut.no/hytte/tjuvenborgkoia'>Tjuenborgkoia</a>",
-		"description": "Ubetjent",
-		"latlng": [60.339, 9.977],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/buvasskoia'>Buvasskoia</a>",
-		"description": "Ubetjent",
-		"latlng": [60.407, 9.775],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/storekrakkoia'>Storekrakkoia</a>",
-		"description": "Ubetjent",
-		"latlng": [60.497, 9.711],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/vassfarkoia'>Vassfarkoia</a>",
-		"description": "Ubetjent",
-		"latlng": [60.496, 9.468],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/f%C3%B8nhuskoia'>Fønhuskoia</a>",
-		"description": "Ubetjent",
-		"latlng": [60.61, 9.432],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "Valdreslihovda",
-		"description": "Telt", 
-		"latlng": [60.676, 9.269],
-		"marker": { "icon": "campsite", "color": "#145291", "size": "m" }
-	},{
-		"name": "Golsfjellet",
-		"description": "<a href='http://www.kamben.no/'>Kamben Høyfjellshotell</a>",
-		"latlng": [60.802, 8.98],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "Robru",
-		"description": "<a href='http://www.joker.no/Butikkene/Buskerud/Joker-Robru/'>Butikk</a>", 
-		"latlng": [60.747,8.869],
-		"marker": { "icon": "grocery", "color": "#145291", "size": "s" }
-	},{
-		"name": "Buhovdvatnet",
-		"description": "Telt", 
-		"latlng": [60.742, 8.675],
-		"marker": { "icon": "campsite", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://www.bergsjostolen.no'>Bergsjøstølen</a>",
-		"description": "Fjellstove", 
-		"latlng": [60.716, 8.291],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/iungsdalshytta'>Iungsdalshytta</a>",
-		"description": "Betjent", 
-		"latlng": [60.81, 7.934],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/kongshelleren'>Kongshelleren</a>",
-		"description": "Selvbetjent", 
-		"latlng": [60.777, 7.701],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/geiterygghytta'>Geiterygghytta</a>",
-		"description": "Betjent", 
-		"latlng": [60.701, 7.604],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/hallingskeid'>Hallingskeid</a>",
-		"description": "Selvbetjent", 
-		"latlng": [60.668, 7.248],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/kaldavasshytta'>Kaldavasshytta</a>",
-		"description": "Ubetjent", 
-		"latlng": [60.702, 7.08],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "Mjølfjell",
-		"description": "<a href='http://www.mjolfjell.no'>Fjellstove</a>", 
-		"latlng": [60.703, 6.937],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "Raundalsryggen",
-		"description": "Telt", 
-		"latlng": [60.637, 6.712],
-		"marker": { "icon": "campsite", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://www.vosscamping.no'>Voss</a>",
-		"description": "Voss Camping", 
-		"latlng": [60.624931, 6.421740],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/torfinnsheim'>Torfinnsheim</a>",
-		"description": "Ubetjent", 
-		"latlng": [60.562, 6.243],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/vending-turisthytte'>Vending</a>",
-		"description": "Selvbetjent", 
-		"latlng": [60.474, 6.075],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "<a href='http://ut.no/hytte/hoegabu'>Høgabu</a>",
-		"description": "Selvbetjent", 
-		"latlng": [60.535, 5.926],
-		"marker": { "icon": "building", "color": "#145291", "size": "m" }
-	},{
-		"name": "Holmavatnet",
-		"description": "Telt", 
-		"latlng": [60.425, 5.682],
-		"marker": { "icon": "campsite", "color": "#145291", "size": "m" }
-	}, {
-		"name": "Nordåsgrenda",
-		"description": "Mål", 
-		"latlng": [60.309, 5.323],
-		"marker": { "icon": "bar", "color": "#145291", "size": "l" }		
-	}];
+      var map = L.map("map", {
+        layers: [
+          L.tileLayer(
+            "http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}",
+            {
+              attribution:
+                '&copy; <a href="http://kartverket.no/">Kartverket</a>'
+            }
+          )
+        ]
+      }).fitBounds([[59.92, 5.19], [60.72, 10.73]]);
 
-	var map = L.map('map', {
-		layers: [
-			L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
-				attribution: '&copy; <a href="http://kartverket.no/">Kartverket</a>'
-			})
-		]
-	}).fitBounds([[59.92,5.19],[60.72,10.73]]);
-
-	for (var i = 0, poi; i < route.length; ++i) {
-		poi = route[i];
-		map.addLayer(L.marker(poi.latlng, {icon: L.MakiMarkers.icon(poi.marker)})
-		   .bindPopup('<strong>' + poi.name + '</strong><br>' + poi.description));
-	}
-				
-	</script>
-</body>
+      for (var i = 0, poi; i < route.length; ++i) {
+        poi = route[i];
+        map.addLayer(
+          L.marker(poi.latlng, {
+            icon: L.MakiMarkers.icon(poi.marker)
+          }).bindPopup(
+            "<strong>" + poi.name + "</strong><br>" + poi.description
+          )
+        );
+      }
+    </script>
+  </body>
 </html>
